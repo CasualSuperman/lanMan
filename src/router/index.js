@@ -90,7 +90,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   const targetRequiresAuth = to.matched.some(record => record.meta.requiresAuth);
   const targetRequiresGuest = to.matched.some(record => record.meta.guest);
-  const loggedIn = localStorage.getItem("username") !== null;
+  const loggedIn = true;// localStorage.getItem("username") !== null;
   if (targetRequiresAuth && !loggedIn) {
     next({path: "/login", nextUrl: to.fullPath});
   } else if (targetRequiresGuest && loggedIn) {

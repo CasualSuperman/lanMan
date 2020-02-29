@@ -33,7 +33,7 @@ export default {
   },
   computed: {
     loggedIn() {
-      return localStorage.getItem("username") !== null;
+      return true; //localStorage.getItem("username") !== null;
     },
   }
 }
