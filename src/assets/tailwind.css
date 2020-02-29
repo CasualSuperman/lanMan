@@ -1,5 +1,13 @@
 @tailwind base;
 
+.primary-bg {
+    @apply bg-teal-700;
+}
+
+.primary-hover {
+    @apply bg-teal-300;
+}
+
 @tailwind components;
 
 @tailwind utilities;
