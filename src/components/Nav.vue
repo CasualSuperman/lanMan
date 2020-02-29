@@ -1,7 +1,7 @@
 <template>
   <nav class="select-none">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-      <div class="border-b border-teal-700">
+      <div class="border-b border-teal-600">
         <div class="flex items-center justify-between h-16 px-4 sm:px-0">
           <div class="flex items-center">
             <div class="flex-shrink-0">
