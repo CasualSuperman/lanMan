@@ -45,24 +45,20 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="-mr-2 flex md:hidden" ref="thumb">
-          <button @click="menuOpen = !menuOpen" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white">
-            <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-              <path :class="{'hidden': menuOpen, 'inline-flex': !menuOpen }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-              <path :class="{'hidden': !menuOpen, 'inline-flex': menuOpen }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
+          <div class="-mr-2 flex md:hidden" ref="thumb">
+            <button @click="menuOpen = !menuOpen" class="inline-flex items-center justify-center p-2 rounded-md hover:text-white hover:bg-gray-700 focus:outline-none" :class="{'bg-gray-700': menuOpen, 'text-white': menuOpen, 'text-gray-400': !menuOpen}">
+              <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                <path :class="{'hidden': menuOpen, 'inline-flex': !menuOpen }" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                <path :class="{'hidden': !menuOpen, 'inline-flex': menuOpen }" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </div>
-    <div :class="{'block': menuOpen, 'hidden': !menuOpen}" class="hidden md:hidden">
+    <div :class="{'block': menuOpen, 'hidden': !menuOpen}" class="md:hidden">
       <div class="px-2 pt-2 pb-3 sm:px-3">
-        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</a>
-        <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Team</a>
-        <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Projects</a>
-        <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Calendar</a>
-        <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Reports</a>
+        <router-link v-for="page of menuItems" :key="page.path" :to="page.path" active-class="menu-btn-active" class="menu-btn block">{{page.name}}</router-link>
       </div>
       <div class="pt-4 pb-3 border-t border-gray-700">
         <div class="flex items-center px-5">
@@ -86,7 +82,13 @@
 
 <style lang="scss">
   .menu-btn {
-    @apply ml-4 px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out text-gray-300;
+    @apply px-3 py-2 rounded-md font-medium text-gray-300 transition duration-150 ease-in-out text-base;
+  }
+  .menu-btn-md {
+    //  md:text-sm md:ml-4 mt-1 md:mt-0
+  }
+  .menu-btn:hover {
+    @apply bg-gray-700;
   }
   .menu-btn:focus {
     @apply outline-none text-white;
@@ -94,8 +96,8 @@
   .menu-btn-active {
     @apply text-white bg-gray-900;
   }
-  .menu-btn:first {
-    @apply ml-0;
+  .menu-btn:first-of-type {
+    @apply ml-0 mt-0;
   }
 </style>
 
@@ -107,7 +109,7 @@ export default {
     data() {
       return {
         profileOpen: false,
-        menuOpen: true,
+        menuOpen: false,
       };
     },
     mounted() {
