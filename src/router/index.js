@@ -40,6 +40,21 @@ const routes = [
           mainPage: true,
         },
       },
+      {
+        path: "user",
+        redirect: "/user/settings",
+        component: () => import(/* webpackChunkName: "user" */ '../views/user/User.vue'),
+        meta: {
+          requiresAuth: true
+        },
+        children: [
+          {
+            path: "settings",
+            name: "User Settings",
+            component: () => import(/* webpackChunkName: "user-settings" */ '../views/user/UserSettings.vue'),
+          }
+        ]
+      }
     ]
   },
   {
@@ -65,7 +80,7 @@ const routes = [
       guest: true,
     },
     params: {suggestedAction: 'register'},
-  }
+  },
 ];
 
 // List all routes registered with the router.
