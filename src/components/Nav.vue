@@ -111,7 +111,6 @@ export default {
       };
     },
     mounted() {
-      console.log("Mounting nav");
       // Use capturing mode on this handler to ensure that we're the very first
       // thing that encounters it. If we didn't do this, other handlers may be
       // able to prevent us from seeing the click event by stopping it themselves.
